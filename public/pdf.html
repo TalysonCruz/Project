@@ -1,0 +1,95 @@
+<html>
+        <head>
+            <style>
+                body {
+                    font-family: Helvetica, Arial, sans-serif;
+                    margin: 20px;
+                }
+                body h1{
+                    text-align: center;
+                }
+                .header {
+                    text-align: right;
+                    font-size: 18px;
+                }
+                .header h1 {
+                    font-size: 18px;
+                    text-align: center;
+                }
+                .table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-top: 20px;
+                }
+                .table th, .table td {
+                    border: 1px solid black;
+                    padding: 8px;
+                    text-align: left;
+                }
+                .table th {
+                    background-color: #f2f2f2;
+                }
+                .total {
+                    margin-top: 20px;
+                    font-size: 16px;
+                    text-align: right;
+                }
+                .h1 {
+                    text-align: center;
+                    font-size: 5px;
+                }
+            </style>
+        </head>
+        <body>
+            <img src=${image} alt="Logo" style="width: auto; height: auto;" />
+            <div class="header">       
+                <p>Tubonox Metalurgica Ltda</p>
+                <p>Rua Fernandó, 560/B - Fernandó</p>
+                <p>Paraiba do Sul /RJ - CEP: 25850-000 - Brasil</p>
+                <p>CNPJ: 08.964.307/0001-14 - IE: 78.330.570</p>
+                <p>Data: ${data}</p>
+            </div>
+            <div class="header_2">
+                <p>De: Tubonox Metalurgica Ltda</p>
+                <p>Contato:Mauricio Garassino</p>
+                <p>Para: ${cliente}</p>
+                <p>A/C: ${ac}</p>
+            </div>
+            <h1>Proposta Comercial N°${idOrcamento}</h1>
+            
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Ref.</th>
+                        <th>Descrição</th>
+                        <th>Qtd.</th>
+                        <th>Valor Unitário</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${itens.map(item => `
+                        <tr>
+                            <td>${id_table + 1}</td>
+                            <td>${item.referencia}</td>
+                            <td>${item.descricao}</td>
+                            <td>${item.qtd}</td>
+                            <td>R$ ${item.valor_unitario.toFixed(2)}</td>
+                            <td>R$ ${item.valor_total.toFixed(2)}</td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+            
+            <div class="total">
+                <p><strong>Total Geral: R$ ${itens.reduce((acc, item) => acc + item.valor_total, 0).toFixed(2)}</strong></p>
+            </div>
+            <div class="especificacao" style="width: 550px;">
+                <p>Especificação:<p>
+                <p>Chapa Inox AISI 304 #1,2mm - Acabamento Escovado Fino Grana 320 Soldagem por Processo TIG/Laser em Ambiente Inerte (Argônio) Desbaste Pós Soldagem - Acabamento Homogenizado Sem Cordão Aparente Frontispicio nas faces que tocam as paredes, incluindo contornos de colunas.  Borda Americana de 4cm Cuba solidarizada na bancada por processo de soldagem TIG. Fixação: * Mão Francesas em perfis tipo “U “de aço inox 304 # 2,0mm Inclusas * Parafusos Inox e Bucha Nylon Inclusos<p>
+                <p>Condições Comerciais:</p>
+                <p>${}</p>
+                <div>
+        </body>
+        </html>
